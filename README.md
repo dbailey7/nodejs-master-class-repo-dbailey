@@ -17,7 +17,7 @@ david.bailey@technologist.com
 
 P.S. To run this example ...
 
-Pull the code (index.js & config.js) down to your local box.  File up, say, 
+Pull the code (index.js & config.js) down to your local box.  Fire up, say, 
 a BASH shell in the folder where the code is.  Then run ...
 $ node index.js
 
