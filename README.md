@@ -24,4 +24,4 @@ $ node index.js
 Fire up another shell, again, in the folder where the code is.  Then run ...
 $ curl localhost:12321/hello
 
-Um, you 'do' have Node.js installed, yes?
+Um, you 'do' have Node.js and curl installed, yes?
