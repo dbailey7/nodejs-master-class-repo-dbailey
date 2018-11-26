@@ -12,7 +12,7 @@ the poster with a "Hello, World!" message and some JSON-formatted text.
 Enjoy,
 
 David Bailey
-david.bailey@technologist.com
+david.bailey@meedpartners.com
 
 
 P.S. To run this example ...
