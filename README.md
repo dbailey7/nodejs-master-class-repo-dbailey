@@ -1,4 +1,7 @@
 # nodejs-master-class-repo-dbailey
+
+Homework Assignment #1
+
 Course Assignments for The Node.js Master Class, from David Bailey
 
 The first entry in this project is for Homework Assignment #1 ...
