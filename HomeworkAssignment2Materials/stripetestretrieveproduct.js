@@ -1,8 +1,9 @@
 /*
  * This is a test module for the stripe.com retrieve product API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-" with your own values.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.products.retrieve(
   "prod_EJwc4aeyZZ4Z5A",
