@@ -1,10 +1,11 @@
 /*
  * This is a test module for the mailgun.com email test send API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-" with your own values.
  */
 
 var DOMAIN = 'YOUR-DOMAIN';
 var mailgun = require('mailgun-js')({
-  apiKey: "YOUR-API-KEY,
+  apiKey: "YOUR-API-KEY",
   domain: DOMAIN
 });
 
