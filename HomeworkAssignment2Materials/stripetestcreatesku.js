@@ -1,8 +1,10 @@
 /*
  * This is a test module for the stripe.com create sku API.  Enjoy watching!
+ 
+* To run this, you must replace the string beginning with "YOUR-" with your own values.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.skus.create({
   product: 'prod_EJwc4aeyZZ4Z5A',
