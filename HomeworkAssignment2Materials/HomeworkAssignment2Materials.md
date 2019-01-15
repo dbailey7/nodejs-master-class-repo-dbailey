@@ -30,7 +30,6 @@ Console Output Files
 mailguncreatedomaintest.png
 mailgungetdomainstest.png
 mailgunemailvalidation.png
-mailgunemailtest.png
 mailgunemailtestsend.png
 
 stripetestcreatecustomer.png
