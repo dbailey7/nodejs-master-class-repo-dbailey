@@ -5,7 +5,7 @@ mailgungetdomainstest.js
 mailgunemailvalidation.js
 mailgunemailtestsend.js
 
-stripetestcreatecustomer.js   
+stripetestcreatecustomer.js
 stripetestretrievecustomer.js
 stripetestupdatecustomer.js
 stripetestlistcustomers.js
@@ -33,10 +33,11 @@ mailgunemailvalidation.png
 mailgunemailtest.png
 mailgunemailtestsend.png
 
-stripetestcreatecustomer.js png
+stripetestcreatecustomer.png
 stripetestretrievecustomer.png
 stripetestupdatecustomer.png
 stripetestlistcustomers.png
+
 stripetestdeletecustomer.png
 
 stripetestlistallskus.png
