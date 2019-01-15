@@ -37,7 +37,6 @@ stripetestcreatecustomer.png
 stripetestretrievecustomer.png
 stripetestupdatecustomer.png
 stripetestlistcustomers.png
-
 stripetestdeletecustomer.png
 
 stripetestlistallskus.png
