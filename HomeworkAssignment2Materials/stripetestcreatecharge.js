@@ -1,8 +1,9 @@
 /*
  * This is a test module for the stripe.com charge API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-" with your own values.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.charges.create({
   amount: 2000,
