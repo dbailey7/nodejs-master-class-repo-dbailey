@@ -1,7 +1,7 @@
 /*
  * This is a test module for the mailgun.com create domain API.  Enjoy watching!
- * To run this, you must replace the strings "YOUR-DOMAIN" and "YOUR-API-KEY"
- * with your own values.
+ * To run this, you must replace the strings "YOUR-DOMAIN", "YOUR-API-KEY" and 
+ * "YOUR-SMTP-PASSWORD" with your own values.
  */
 
 var DOMAIN = 'YOUR-DOMAIN';
@@ -13,7 +13,7 @@ var mailgun = require('mailgun-js')({
 mailgun.post('/domains',
   {
     "name": "YOUR-DOMAIN",
-    "smtp_password": "Pass0110!"
+    "smtp_password": "YOUR-SMTP-PASSWORD"
   },
   function (error, body) {
     if(!error, body){
