@@ -8,8 +8,8 @@ mailgunemailtestsend.js
 stripetestcreatecustomer.js   
 stripetestretrievecustomer.js
 stripetestupdatecustomer.js
-stripetestdeletecustomer.js
 stripetestlistcustomers.js
+stripetestdeletecustomer.js
 
 stripetestlistallskus.js
 stripetestupdatesku.js
@@ -36,8 +36,8 @@ mailgunemailtestsend.png
 stripetestcreatecustomer.js png
 stripetestretrievecustomer.png
 stripetestupdatecustomer.png
-stripetestdeletecustomer.png
 stripetestlistcustomers.png
+stripetestdeletecustomer.png
 
 stripetestlistallskus.png
 stripetestupdatesku.png
