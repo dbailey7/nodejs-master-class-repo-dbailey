@@ -55,7 +55,7 @@ See my public GitHub repo (you are here) for the code and documentation for this
 
 David
 
-The code modules and console output screen shots are listed in the "HomeworkAssignment2" file in 
+The code modules and console output screen shots are listed in the "HomeworkAssignment2Files" file in 
 the "HomeworkAssignment2Materials" folder.
 
 Any questions can be sent to me at david.bailey@meedpartners.com
