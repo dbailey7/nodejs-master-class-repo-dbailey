@@ -1,8 +1,9 @@
 /*
  * This is a test module for the stripe.com customer creation API.  Enjoy watching!
+ * To run this, you must replace the string beginning with "YOUR-" with your own values.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.customers.create({
   metadata: {name: "Joseph Horatio Blowe"},
