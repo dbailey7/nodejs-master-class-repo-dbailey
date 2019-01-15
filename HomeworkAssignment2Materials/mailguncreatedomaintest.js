@@ -1,7 +1,7 @@
 /*
  * This is a test module for the mailgun.com create domain API.  Enjoy watching!
- * To run this, you must replace the strings "YOUR-DOMAIN", "YOUR-API-KEY" and 
- * "YOUR-SMTP-PASSWORD" with your own values.
+ * To run this, you must replace the strings beginning with "YOUR-" with your 
+ * own values.
  */
 
 var DOMAIN = 'YOUR-DOMAIN';
