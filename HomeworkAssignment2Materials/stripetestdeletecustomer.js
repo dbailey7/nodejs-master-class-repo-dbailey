@@ -1,8 +1,9 @@
 /*
  * This is a test module for the stripe.com delete customer API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-" with your own values.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 var idToDelete = "cus_ELhfFx1Z79cHlV";
 
 stripe.customers.del(
