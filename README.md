@@ -41,7 +41,7 @@ Build an API for a pizza-delivery company. Build the API, only; a frontend is no
 
 1. New users can be created, their information can be edited, and they can be deleted. We should store their name, email address, and street address.
 
-2. Users can log in or out by creating or destroying a token.
+2. Users can log in or out by creating or destroying (deleting) a token.
 
 3. When a user is logged in, they should be able to GET all the possible menu items (these items can be hardcoded into the application).
 
