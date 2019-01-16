@@ -31,7 +31,8 @@ Um, you 'do' have Node.js and curl installed, yes?
 
 Homework Assignment #2
 
-Course Assignments for The Node.js Master Class, from David Bailey
+Course Assignments for The Node.js Master Class, from David Bailey continued ...
+
 Greetings,
 
 This entry for this project is for meeting the requirements of The Node.js Master Class, "Homework Assignment #2". 
