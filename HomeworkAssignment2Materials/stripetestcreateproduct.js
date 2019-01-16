@@ -1,6 +1,7 @@
 /*
  * This is a test module for the stripe.com create product API.  Enjoy watching!
- * To run this, you must replace the strings beginning with "YOUR-" with your own values.
+ * To run this, you must replace the strings beginning with "YOUR-API-SKU" with 
+ * your own value.
  */
 
 var stripe = require("stripe")("YOUR-API-KEY");
