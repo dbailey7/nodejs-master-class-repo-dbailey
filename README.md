@@ -56,6 +56,7 @@ See my public GitHub repo (you are here) for the code and documentation for this
 David
 
 The code modules and console output screen shots are listed in the "HomeworkAssignment2Materials.md" file in 
-the "HomeworkAssignment2Materials" folder.
+the "HomeworkAssignment2Materials" folder.  To actually run these examples, you'll need to replace any strings
+in the code modules beginning with "YOUR-" to your own values.
 
 Any questions can be sent to me at david.bailey@meedpartners.com
