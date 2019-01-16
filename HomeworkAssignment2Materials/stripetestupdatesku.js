@@ -10,10 +10,7 @@ stripe.skus.update(
   "sku_EJxb2UWDRniiXa",
   {
     metadata: {item_description: 'T-Shirt'},
-    //type: 'good',
-    attributes: [
-      "size", "gender"
-    ],
+    price: 1200
   }, function(err, sku) {
   // asynchronously called
     if(!err, sku){
