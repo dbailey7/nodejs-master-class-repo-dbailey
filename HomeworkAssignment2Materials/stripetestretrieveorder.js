@@ -1,8 +1,10 @@
 /*
  * This is a test module for the stripe.com retrieve order API.  Enjoy watching!
+ * To run this, you must replace the string beginning with "YOUR-API-KEY" with 
+ * your own value.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.orders.retrieve("or_1DtH5zA1C24GEPq7iLPnn799",
   function(err, order) {
