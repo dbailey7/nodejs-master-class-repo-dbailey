@@ -1,8 +1,10 @@
 /*
  * This is a test module for the stripe.com list all orders API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-API-KEY" with
+ * your own value.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.orders.list(
   { limit: 20 },
