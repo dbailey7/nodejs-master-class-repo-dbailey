@@ -1,6 +1,6 @@
 /*
  * This is a test module for the stripe.com update product API.  Enjoy watching!
- * To run this, you must replace the string beginning with "YOUR--API-KEY" with
+ * To run this, you must replace the string beginning with "YOUR-API-KEY" with
  * your own value.
  */
 
