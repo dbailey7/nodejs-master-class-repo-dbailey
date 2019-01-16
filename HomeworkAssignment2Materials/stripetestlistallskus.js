@@ -1,18 +1,18 @@
 /*
- * This is a test module for the stripe.com list all orders API.  Enjoy watching!
+ * This is a test module for the stripe.com list all skus API.  Enjoy watching!
  * To run this, you must replace the strings beginning with "YOUR-API-KEY" with
  * your own value.
  */
 
 var stripe = require("stripe")("YOUR-API-KEY");
 
-stripe.orders.list(
+stripe.skus.list(
   { limit: 20 },
-  function(err, orders) {
+  function(err, skus) {
   // asynchronously called
   if(!err, orders){
-    console.log('Success: orders are ', orders);
+    console.log('Success: skus are ', orders);
   } else {
-    console.log('Error: all orders list creation failed; error was: ', err);
+    console.log('Error: all skus list creation failed; error was: ', err);
   }
 });
