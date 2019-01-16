@@ -1,8 +1,10 @@
 /*
- * This is a test module for the stripe.com create sku API.  Enjoy watching!
+ * This is a test module for the stripe.com list products API.  Enjoy watching!
+ * To run this, you must replace the strings beginning with "YOUR-API-KEY" with 
+ * your own value.
  */
 
-var stripe = require("stripe")("sk_test_UQemyl39wvtyhlN1ktMXobGY");
+var stripe = require("stripe")("YOUR-API-KEY");
 
 stripe.products.list(
   { limit: 20 },
