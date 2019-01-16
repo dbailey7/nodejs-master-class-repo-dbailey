@@ -12,6 +12,8 @@ stripe.orders.retrieve("or_1DtH5zA1C24GEPq7iLPnn799",
   if(!err, order){
     //console.log('Success: order ', order.items.description, ' was created okay.');
     console.log('Success: order ', order.id, ' was retrieved okay.');
+    console.log('Order description is ', order.items[0].description);
+    console.log('Order status is ', order.status);
   } else {
     console.log('Error: order retrieval failed; error was: ', err);
   }
