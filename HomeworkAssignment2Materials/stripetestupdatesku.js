@@ -1,6 +1,7 @@
 /*
  * This is a test module for the stripe.com update sku API.  Enjoy watching!
- * To run this, you must replace the strings beginning with "YOUR-" with your own values.
+ * To run this, you must replace the string beginning with "YOUR-API-KEY" with
+ * your own value.
  */
 
 var stripe = require("stripe")("YOUR-API-KEY");
