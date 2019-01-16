@@ -23,7 +23,7 @@ BASH shell in the folder where the code is.  Then run ...
 $ node index.js
 
 Fire up another shell, again, in the folder where the code is.  Then run ...
-$ curl localhost:12321/hello
+$ curl localhost:12321/hello, or browser to localhost:12321/hello
 
 Um, you 'do' have Node.js and curl installed, yes?
 
