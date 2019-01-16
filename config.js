@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+// <<<<<<< HEAD
 /*
  * Create and export configuration variables
  *
@@ -60,5 +60,6 @@ var environmentToExport = typeof(environments[currentEnvironment]) == 'object' ?
 	environments[currentEnvironment] : environments.staging;
 
 // Export the module
->>>>>>> 5a9d0064210de88c8ed7f7b392008cdfd9db470b
-module.exports = environmentToExport;	
+// >>>>>>> 5a9d0064210de88c8ed7f7b392008cdfd9db470b
+// module.exports = environmentToExport;	
+module.exports = environments;	
