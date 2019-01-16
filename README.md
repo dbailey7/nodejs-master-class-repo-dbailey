@@ -6,7 +6,7 @@ Course Assignments for The Node.js Master Class, from David Bailey
 
 The first entry in this project is for Homework Assignment #1 ...
 
-This is a simple "Hello, happy World!" RESTful JSON API app, that listens on 
+This is a simple "Hello, Happy World!" RESTful JSON API app, that listens on 
 port 12321.  Any posts to this route with the path /hello, will greet
 the poster with a "Hello, Happy World!" message and some JSON-formatted text. 
 Enjoy,
