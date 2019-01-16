@@ -6,7 +6,7 @@
 
 var stripe = require("stripe")("YOUR-API-KEY");
 
-stripe.products.delete(
+stripe.products.del(
   "prod_EJxLg9at4VLayF",
   function(err, product) {
   // asynchronously called
