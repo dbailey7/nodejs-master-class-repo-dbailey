@@ -11,7 +11,7 @@ stripe.skus.list(
   function(err, skus) {
   // asynchronously called
   if(!err, orders){
-    console.log('Success: skus are ', orders);
+    console.log('Success: skus are:\n', skus);
   } else {
     console.log('Error: all skus list creation failed; error was: ', err);
   }
