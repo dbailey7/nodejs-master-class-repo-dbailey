@@ -59,7 +59,7 @@ David
 
 The code modules and console output screen shots are listed in the "HomeworkAssignment2Materials.md" file in 
 the "HomeworkAssignment2Materials" folder.  To actually run these examples, you'll need to replace any strings
-in the code modules beginning with "YOUR-" to your own values.
+in the code modules beginning with "YOUR-" with your own values.
 
 ---------------------------------------------------------------------------------
 
