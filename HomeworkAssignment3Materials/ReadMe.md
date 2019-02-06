@@ -1,7 +1,5 @@
-One of these days I shall correct this error and be able to move on ...
+Having difficulties creating pizza "orders".  My "orders" are objects similar in nature to the "checks" in the lecture material.
 
-In the meantime, I shall toil over finding its solution.  The error is ...
+The error I am getting is ...  "Error trying to load order ID:  10zii9zs3tfr1wjlfts4"                                app.js:444
 
-Error trying to load order ID:  10zii9zs3tfr1wjlfts4                                                    app.js:444
-
-I can't seem to create pizza "orders".  They are objects similar in nature to the "checks" in the lecture material.
+The status code is "403", but I can't seem to determine why it is occurring.
