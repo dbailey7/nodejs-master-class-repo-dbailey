@@ -13,7 +13,7 @@ var mailgun = require('mailgun-js')({
 var data = {
   to: 'YOUR-VERIFIED-EMAIL',
   from: 'Tony\'s Pizza House <YOUR-SANDBOX-EMAIL>',
-  subject: 'Your Order Form Tony's Pizza House',
+  subject: 'Your Order Form Tony\'s Pizza House',
   text: 'Your tasty pizza is on its way!'
 };
 
