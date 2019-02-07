@@ -63,4 +63,34 @@ in the code modules beginning with "YOUR-" with your own values.
 
 ---------------------------------------------------------------------------------
 
+Homework Assignment #3
+
+Course Assignments for The Node.js Master Class, from David Bailey continued ...
+
+Greetings,
+
+This entry for this project is for meeting the requirements of The Node.js Master Class, "Homework Assignment #3".
+
+The requirements are:
+
+Build a simple frontend for the Pizza-Delivery API you created in Homework Assignment #2. Please create a web app that allows customers to:
+
+1. Signup on the site
+
+2. View all the items available to order; in this case, select "toppings"
+
+3. Fill up a shopping cart; in this case, with up to five "orders"
+
+4. Place an order (with fake credit card credentials), and receive an email receipt
+
+See my public GitHub repo (you are here) for the code and documentation for this assignment. Cheers,
+
+David
+
+---------------------------------------------------------------------------------
+
+To actually run this project, you'll need to replace any strings in the code modules beginning with "YOUR-" with your own values.
+
+---------------------------------------------------------------------------------
+
 Any questions can be sent to me at david.bailey@meedpartners.com
