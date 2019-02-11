@@ -399,18 +399,19 @@ handlers.users = function(data, callback){
 // Container for the users subhandlers
 handlers._users = {};
 
-// Users - post subhandler
-// Required data: firstname, lastname, phone, password, tosAgreement (um, terms of svc)
+// Users - post subhandler (for use with handlers.accountCreate, er creating accounts)
+// Required data: firstname, lastname, phone, email, password, tosAgreement (um, terms of svc)
 // Optional data: none
 handlers._users.post = function(data, callback){
   // Check that all required fields are valid
   var firstName = typeof(data.payload.firstName) == 'string'  && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string'  && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
   var phone = typeof(data.payload.phone) == 'string'  && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
+  var email = typeof(data.payload.email) == 'string'  && data.payload.email.trim().length > 0 ? data.payload.email.trim() : false;
   var password = typeof(data.payload.password) == 'string'  && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
   var tosAgreement = typeof(data.payload.tosAgreement) == 'boolean'  && data.payload.tosAgreement == true ? true : false;
-
-  if(firstName && lastName && phone && password && tosAgreement){
+  console.log('D E B U G --> handlers.js line 413 _users.post required fields --> firstName: ' + firstName + '; lastName: ' + lastName + '; phone: ' + phone + '; email: ' + email + '; password: ' + password + '; termsOfService: ' + tosAgreement);
+  if(firstName && lastName && phone && email && password && tosAgreement){
     // Insure the user doesn't already exist
     _data.read('users', phone, function(err, data){
       if(err){
@@ -423,6 +424,7 @@ handlers._users.post = function(data, callback){
             'firstName': firstName,
             'lastName': lastName,
             'phone': phone,
+            'email': email,
             'hashedPassword': hashedPassword,
             'tosAgreement': true
           };
@@ -491,12 +493,13 @@ handlers._users.put = function(data, callback){
   // Check for the optional fields
   var firstName = typeof(data.payload.firstName) == 'string'  && data.payload.firstName.trim().length > 0 ? data.payload.firstName.trim() : false;
   var lastName = typeof(data.payload.lastName) == 'string'  && data.payload.lastName.trim().length > 0 ? data.payload.lastName.trim() : false;
+  var email = typeof(data.payload.email) == 'string'  && data.payload.email.trim().length > 0 ? data.payload.email.trim() : false;
   var password = typeof(data.payload.password) == 'string'  && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
   // Error if the phone is invalid
   if(phone){
     // Error if nothing is sent to Update
-    if(firstName || lastName || password){
+    if(firstName || lastName || email || password){
       // Get the token from the headers
       var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
       // Verify that the given token is valid for the phone number
@@ -511,6 +514,9 @@ handlers._users.put = function(data, callback){
               }
               if(lastName){
                 userData.lastName = lastName;
+              }
+              if(email){
+                userData.email = email;
               }
               if(password){
                 userData.hashedPassword = helpers.hash(password);
@@ -769,26 +775,27 @@ handlers.orders = function(data, callback){
 handlers._orders = {};
 
 //orders - post (for use with Creating Orders)
-// Required data: address, phone, toppings
+// Required data: email, address, phone, toppings
 // Optional data: none
 handlers._orders.post = function(data, callback){
   // Check that the inputs are valid
+  var email = typeof(data.payload.email) == 'string' && data.payload.email.trim().length > 0 ? data.payload.email : false;
   var address = typeof(data.payload.address) == 'string' && data.payload.address.trim().length > 0 ? data.payload.address : false;
   var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length > 0 ? data.payload.phone.trim() : false;
   var toppings = typeof(data.payload.toppings) == 'object' && data.payload.toppings instanceof Array && data.payload.toppings.length > 0 ? data.payload.toppings : false;
-console.log("D E B U G --> address, phone and toppings are: " + address + phone + toppings);
-  // By the way, % 1 === 0, is how you specify a number is a 'whole number'! -- console.log(address, phone, toppings);
-  if(address && phone && toppings) {
+  console.log("D E B U G --> handlers.js line 786 email, address, phone and toppings are: " + email + address + phone + toppings);
+  // By the way, % 1 === 0, is how you specify a number is a 'whole number'!
+  if(email && address && phone && toppings) {
     // Get the token from the headers
     var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
 
     // Lookup the user phone by reading the token
     _data.read('tokens', token, function(err, tokenData){
       if(!err && tokenData){
-        var userPhone = tokenData.phone;
+        var phone = tokenData.phone;
 
         // Lookup the user data
-        _data.read('users', userPhone, function(err, userData){
+        _data.read('users', phone, function(err, userData){
           if(!err && userData){
             var userOrders = typeof(userData.orders) == 'object' && userData.orders instanceof Array ? userData.orders : [];
 
@@ -797,10 +804,11 @@ console.log("D E B U G --> address, phone and toppings are: " + address + phone 
               // Create a random id for the order
               var orderId = helpers.createRandomString(20);
 
-              //Create the order object, and include the user's userPhone
+              //Create the order object, and include the user's phone
               var orderObject = {
                 'id': orderId,
-                'phone': userPhone,
+                'email': email,
+                'phone': phone,
                 'address': address,
                 'toppings': toppings
               };
@@ -813,7 +821,7 @@ console.log("D E B U G --> address, phone and toppings are: " + address + phone 
                     userData.orders.push(orderId);
 
                     // Save the new user data
-                    _data.update('users', userPhone, userData, function(err){
+                    _data.update('users', phone, userData, function(err){
                       if(!err){
                         // Return the data about the new order
                         callback(200, orderObject);
@@ -855,14 +863,14 @@ handlers._orders.get = function(data, callback){
         // Get the token from the headers
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid and belongs to the user that created the order
-        //console.log('This is the order data: \n', orderData);
-        handlers._tokens.verifyToken(token, orderData.userPhone, function(tokenIsValid){
+        console.log('D E B U G --> handlers.js line 866 This is the order data: \n', orderData);
+        handlers._tokens.verifyToken(token, orderData.phone, function(tokenIsValid){
           if(tokenIsValid){
             // Return the order data
-            //console.log('tokenIsValid is true.');
+            console.log('D E B U G --> handlers.js line 870 tokenIsValid is true.');
             callback(200, orderData);
           } else {
-            //console.log('tokenIsValid is false.');
+            console.log('D E B U G --> handlers.js line 873 tokenIsValid is false.');
             callback(403);
           }
         });
@@ -877,28 +885,32 @@ handlers._orders.get = function(data, callback){
 
 // Orders - put subhandler (for use with handlers.ordersUpdate)
 // Required data: id
-// Optional data: address, phone, toppings
+// Optional data: email, address, phone, toppings
 handlers._orders.put = function(data, callback){
   // Check for the required field
   var id = typeof(data.payload.id) == 'string'  && data.payload.id.trim().length == 20 ? data.payload.id.trim() : false;
   // Check for optional fields
+  var email = typeof(data.payload.email) == 'string' && data.payload.email.trim().length > 0 ? data.payload.email : false;
   var address = typeof(data.payload.address) == 'string' && data.payload.address.trim().length > 0 ? data.payload.address : false;
   var phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length > 0 ? data.payload.phone.trim() : false;
   var toppings = typeof(data.payload.toppings) == 'object' && data.payload.toppings instanceof Array && data.payload.toppings.length > 0 ? data.payload.toppings : false;
 
   // Check that id is valid
   if(id){
-    if(address || phone || toppings){
+    if(email || address || phone || toppings){
       // Lookup the order
       _data.read('orders', id, function(err, orderData){
         if(!err && orderData){
           // Get the token from the headers
           var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
           // Verify that the given token is valid and belongs to the user that created the order
-          console.log('This is the order data: \n', orderData);
-          handlers._tokens.verifyToken(token, orderData.userPhone, function(tokenIsValid){
+          console.log('D E B U G --> handlers.js line 907 This is the order data: \n', orderData);
+          handlers._tokens.verifyToken(token, orderData.phone, function(tokenIsValid){
             if(tokenIsValid){
               // Update the order where necessary
+              if(email){
+                orderData.email = email;
+              }
               if(address){
                 orderData.address = address;
               }
@@ -922,7 +934,7 @@ handlers._orders.put = function(data, callback){
             }
           });
         } else {
-          callback(400, {'Error': 'Check id does not exist.'});
+          callback(400, {'Error': 'Order id does not exist.'});
         }
       });
     } else {
@@ -934,7 +946,7 @@ handlers._orders.put = function(data, callback){
 };
 
 
-// Orders - delete subhandler (for use with handlers.ordersEdit)
+// Orders - delete subhandler (for use with handlers.orders. Edit)
 // Required data: id
 // Optional data: none
 handlers._orders.delete = function(data, callback){
@@ -947,14 +959,14 @@ handlers._orders.delete = function(data, callback){
         // Get the token from the headers
         var token = typeof(data.headers.token) == 'string' ? data.headers.token : false;
         // Verify that the given token is valid for the phone number
-        handlers._tokens.verifyToken(token, orderData.userPhone, function(tokenIsValid){
-          if(tokenIsValid){
-
+        handlers._tokens.verifyToken(token, orderData.phone, function(tokenIsValid){
+          if(handlers.orders){
+            //console.log('D E B U G --> handlers.js line 964 handlers.orders is: \n' + handlers.orders);
             // Delete the order data
             _data.delete('orders', id, function(err){
               if(!err){
                 // Lookup the user
-                _data.read('users', orderData.userPhone, function(err, userData){
+                _data.read('users', orderData.phone, function(err, userData){
                   if(!err){
                     // Determine what the user's orders are
                     var userOrders = typeof(userData.orders) == 'object' && userData.orders instanceof Array ? userData.orders : [];
@@ -965,7 +977,8 @@ handlers._orders.delete = function(data, callback){
                       userOrders.splice(orderPosition, 1);
                       // Re-save the user's data
                       userData.orders = userOrders;
-                      _data.update('users', orderData.userPhone, userData, function(err){
+                      //_data.update('users', orderData.userPhone, userData, function(err){
+                      _data.update('users', orderData.phone, userData, function(err){
                         if(!err){
                         callback(200);
                         } else {
