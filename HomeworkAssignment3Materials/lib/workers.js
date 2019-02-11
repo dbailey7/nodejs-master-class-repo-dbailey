@@ -59,7 +59,7 @@ workers.logRotationLoop = function(){
 workers.init = function(){
 
   // Send a start message to the console in yellow
-  console.log('\x1b[33m%s\x1b[0m','Background workers are running.');
+  console.log('\x1b[33m%s\x1b[0m','The background workers are running.');
 
   // Execute all the orders immediately
   workers.gatherAllOrders();
