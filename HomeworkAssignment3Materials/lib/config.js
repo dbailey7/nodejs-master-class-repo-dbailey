@@ -14,8 +14,8 @@ environments.staging = {
 	'hashingSecret': 'thisIsASecret',
 	'maxOrders': 5,
 	'twilio': {
-		'accountSid': 'YOUR-ACCT-SID-HERE',
-		'authToken': 'YOUR-AUTH-TOKEN-HERE',
+		'accountSid': 'AC3d9f0c7cbcd01b34c80ae44f7d262b9a',
+		'authToken': 'db501e3b6fd065354ac1a2ee910db1f7',
 		'fromPhone': '+126106009686',
 		'toPhone': '+12076914123'
 	},
@@ -35,8 +35,8 @@ environments.production = {
 	'hashingSecret': 'thisIsAlsoASecret',
 	'maxOrders': 5,
 	'twilio': {
-		'accountSid': 'YOUR-ACCT-SID-HERE',
-		'authToken': 'YOUR-AUTH-TOKEN-HERE',
+		'accountSid': 'AC3d9f0c7cbcd01b34c80ae44f7d262b9a',
+		'authToken': 'db501e3b6fd065354ac1a2ee910db1f7',
 		'fromPhone': '+126106009686',
 		'toPhone': '+12076914123'
 	},
