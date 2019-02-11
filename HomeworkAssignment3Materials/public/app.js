@@ -122,7 +122,7 @@ app.logUserOut = function(redirectUser){
 
 // Bind the forms
 app.bindForms = function(){
-  console.log('D E B U G --> app.js line 125 document.querySelector("form") value is ', document.querySelector("form"));
+  //console.log('D E B U G --> app.js line 125 document.querySelector("form") value is ', document.querySelector("form"));
   if(document.querySelector("form")){
     var allForms = document.querySelectorAll("form");
     for(var i = 0; i < allForms.length; i++){
@@ -384,6 +384,7 @@ app.loadAccountEditPage = function(){
         document.querySelector("#accountEdit1 .firstNameInput").value = responsePayload.firstName;
         document.querySelector("#accountEdit1 .lastNameInput").value = responsePayload.lastName;
         document.querySelector("#accountEdit1 .displayPhoneInput").value = responsePayload.phone;
+        document.querySelector("#accountEdit1 .emailInput").value = responsePayload.email;
 
         // Put the hidden phone field into both forms
         var hiddenPhoneInputs = document.querySelectorAll("input.hiddenPhoneNumberInput");
@@ -415,7 +416,7 @@ app.loadOrdersListPage = function(){
 
         // Determine how many orders the user has
         var allOrders = typeof(responsePayload.orders) == 'object' && responsePayload.orders instanceof Array && responsePayload.orders.length > 0 ? responsePayload.orders : [];
-        console.log('D E B U G --> app.js line 418 Number of orders is ' + allOrders.length);
+        console.log('D E B U G --> app.js line 419 Number of orders: ' + allOrders.length + '; responsePayload.orders: \n' + responsePayload.orders);
         if(allOrders.length > 0){
 
           // Show each created order as a new row in the table
@@ -425,7 +426,7 @@ app.loadOrdersListPage = function(){
               'id' : orderId
             };
             app.client.request(undefined, 'api/orders', 'GET', newQueryStringObject, undefined, function(statusCode, responsePayload){
-              console.log('D E B U G --> app.js line 428 responsePayload is \n', responsePayload);
+              console.log('D E B U G --> app.js line 429 responsePayload is \n', responsePayload);
               if(statusCode == 200){
                 var orderData = responsePayload;
                 // Make the order data into a table row
@@ -436,10 +437,12 @@ app.loadOrdersListPage = function(){
                 var td1 = tr.insertCell(1);
                 var td2 = tr.insertCell(2);
                 var td3 = tr.insertCell(3);
-                td0.innerHTML = responsePayload.address;
-                td1.innerHTML = responsePayload.phone;
-                td2.innerHTML = responsePayload.toppings;
-                td3.innerHTML = '<a href="/orders/edit?id=' + responsePayload.id + '">View / Edit / Delete</a>';
+                var td4 = tr.insertCell(4);
+                td0.innerHTML = responsePayload.email;
+                td1.innerHTML = responsePayload.address;
+                td2.innerHTML = responsePayload.phone;
+                td3.innerHTML = responsePayload.toppings;
+                td4.innerHTML = '<a href="/orders/edit?id=' + responsePayload.id + '">View / Edit / Delete</a>';
               } else {
                 console.log("Error trying to load order ID: ", orderId);
               }
@@ -460,7 +463,7 @@ app.loadOrdersListPage = function(){
 
         }
       } else {
-        // If the request comes back as something other than 200, log the user our (on the assumption that the api is temporarily down or the users token is bad)
+        // If the request comes back as something other than 200, log the user out (on the assumption that the api is temporarily down or the users token is bad)
         app.logUserOut();
       }
     });
@@ -473,14 +476,14 @@ app.loadOrdersListPage = function(){
 app.loadOrdersEditPage = function(){
   // Get the order id from the query string, if none is found then redirect back to Order Information
   var id = typeof(window.location.href.split('=')[1]) == 'string' && window.location.href.split('=')[1].length > 0 ? window.location.href.split('=')[1] : false;
-  console.log('D E B U G --> app.js line 476 You are here at the top of the app.loadOrdersEditPage function!');
+  //console.log('D E B U G --> app.js line 479 You are here at the top of the app.loadOrdersEditPage function!');
   if(id){
     // Fetch the order data
     var queryStringObject = {
       'id' : id
     };
     app.client.request(undefined, 'api/orders', 'GET', queryStringObject, undefined, function(statusCode, responsePayload){
-      console.log('D E B U G --> app.js line 483 You are here at the top of the app.client.request function in the loadOrdersEditPage!');
+      //console.log('D E B U G --> app.js line 486 You are here at the top of the app.client.request function in the loadOrdersEditPage!');
       if(statusCode == 200){
 
         // Put the hidden id field into both forms
@@ -491,16 +494,17 @@ app.loadOrdersEditPage = function(){
 
         // Put the data into the top form as values where needed
         document.querySelector("#ordersEdit1 .displayIdInput").value = responsePayload.id;
+        document.querySelector("#ordersEdit1 .emailInput").value = responsePayload.email;
         document.querySelector("#ordersEdit1 .addressInput").value = responsePayload.address;
         document.querySelector("#ordersEdit1 .phoneInput").value = responsePayload.phone;
         var toppingsCheckboxes = document.querySelectorAll("#ordersEdit1 input.toppingsInput");
-        console.log('D E B U G --> app.js line 497 toppingsCheckboxes length: ' + toppingsCheckboxes.length);
+        console.log('D E B U G --> app.js line 501 toppingsCheckboxes length: ' + toppingsCheckboxes.length);
         for(var i = 0; i < toppingsCheckboxes.length; i++){
           if(responsePayload.toppings.indexOf(toppingsCheckboxes[i].value) > -1){
             toppingsCheckboxes[i].checked = true;
-            console.log('D E B U G --> app.js line 501 You will receive a value for toppingsCheckboxes index value: ' + i);
+            console.log('D E B U G --> app.js line 505 You will receive a value for toppingsCheckboxes index value: ' + i);
           } else {
-            console.log('D E B U G --> app.js line 503 You will NOT receive a value for toppingsCheckboxes index value: ' + i);
+            console.log('D E B U G --> app.js line 507 You will NOT receive a value for toppingsCheckboxes index value: ' + i);
           }
         }
       } else {
@@ -518,7 +522,8 @@ app.tokenRenewalLoop = function(){
   setInterval(function(){
     app.renewToken(function(err){
       if(!err){
-        console.log("Token renewed successfully at time: " + Date.now());
+        var nowsers = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+        console.log("Token renewed successfully at time: " + nowsers);
       }
     });
   },1000 * 60);
